@@ -10,7 +10,7 @@ class CandlestickWidget extends StatelessWidget {
   const CandlestickWidget({
     super.key,
     required this.candlestickModel,
-    this.candleWidth = 10,
+    this.candleWidth = 30,
   });
 
   @override

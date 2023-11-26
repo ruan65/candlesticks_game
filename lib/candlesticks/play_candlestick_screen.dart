@@ -1,4 +1,4 @@
-import 'package:card/candlesticks/candle_stick_widget.dart';
+import 'package:card/candlesticks/candlestick_list.dart';
 import 'package:card/candlesticks/candlestick_model.dart';
 import 'package:card/style/my_button.dart';
 import 'package:flutter/material.dart';
@@ -17,8 +17,10 @@ class PlayCandlestickScreen extends StatelessWidget {
           child: const Text('Back'),
         ),
         _gap,
-        CandlestickWidget(
-          candlestickModel: pattern[0],
+        CandlestickList(
+          candlestickModels: pattern,
+          candleWidth: 30,
+          itemHeight: 40,
         ),
       ],
     );
@@ -29,4 +31,6 @@ class PlayCandlestickScreen extends StatelessWidget {
 
 final pattern = [
   CandlestickModel(open: 90, close: 70, high: 100, low: 0),
+  CandlestickModel(open: 20, close: 70, high: 100, low: 0),
+  CandlestickModel(open: 20, close: 70, high: 90, low: 10),
 ];
