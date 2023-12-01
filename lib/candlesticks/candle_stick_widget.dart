@@ -1,7 +1,8 @@
 import 'dart:math';
 
-import 'candlestick_model.dart';
 import 'package:flutter/material.dart';
+
+import 'models/candlestick_model.dart';
 
 class CandlestickWidget extends StatelessWidget {
   final CandlestickModel candlestickModel;
@@ -30,27 +31,15 @@ class CandlestickPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    Paint linePaint = Paint()
+    Paint paint = Paint()
       ..color = candlestickModel.open < candlestickModel.close
           ? Colors.green
           : Colors.red
       ..strokeWidth = 1.0
-      ..strokeCap = StrokeCap.round;
-
-    Paint rectPaint = Paint()
-      ..color = candlestickModel.open < candlestickModel.close
-          ? Colors.green
-          : Colors.red
+      ..strokeCap = StrokeCap.round
       ..style = PaintingStyle.fill;
 
     double bodyHeight = (candlestickModel.open - candlestickModel.close).abs();
-    double topShadowHeight = (candlestickModel.high -
-            max(candlestickModel.open, candlestickModel.close))
-        .abs();
-    double bottomShadowHeight =
-        (min(candlestickModel.open, candlestickModel.close) -
-                candlestickModel.low)
-            .abs();
 
     double candleWidth = size.width;
     double candleHeight = size.height;
@@ -60,27 +49,20 @@ class CandlestickPainter extends CustomPainter {
     double topShadowY = candleHeight - candlestickModel.high;
     double bottomShadowY = candleHeight - candlestickModel.low;
 
-    // Draw top shadow
     canvas.drawLine(
       Offset(candleWidth / 2, topShadowY),
-      Offset(candleWidth / 2, topShadowY + topShadowHeight),
-      linePaint,
-    );
-
-    // Draw bottom shadow
-    canvas.drawLine(
       Offset(candleWidth / 2, bottomShadowY),
-      Offset(candleWidth / 2, bottomShadowY - bottomShadowHeight),
-      linePaint,
+      paint,
     );
 
-    // Draw candle body
     canvas.drawRect(
       Rect.fromPoints(
-        Offset(candleWidth / 4, bodyY),
-        Offset(3 * candleWidth / 4, bodyY + bodyHeight),
+        // Offset(candleWidth / 4, bodyY),
+        // Offset(3 * candleWidth / 4, bodyY + bodyHeight),
+        Offset(candleWidth / 6, bodyY),
+        Offset(5 * candleWidth / 6, bodyY + bodyHeight),
       ),
-      rectPaint,
+      paint,
     );
   }
 

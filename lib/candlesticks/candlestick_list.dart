@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'candle_stick_widget.dart';
-import 'candlestick_model.dart';
+import 'models/candlestick_model.dart';
 
 class CandlestickList extends StatelessWidget {
   final List<CandlestickModel> candlestickModels;
